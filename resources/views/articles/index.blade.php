@@ -18,5 +18,9 @@
                 @if ($loop->last) <p>last</p> @endif
             @endforeach
         </div>
+
+        <div class="container p-5">
+            {{ $articles->links() }}
+        </div>
     </body>
 </html>
