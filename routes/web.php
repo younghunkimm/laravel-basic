@@ -40,7 +40,7 @@ Route::post('/articles', function(Request $request) {
     $request->validate([
         'body' => [
             'required',
-            'boolean',
+            'string',
             'max:255',
             'min:10'
         ],
