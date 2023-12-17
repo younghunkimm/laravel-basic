@@ -19,7 +19,10 @@
 
                 <button type="submit" class="py-1 px-3 bg-black text-white rounded text-xs">저장하기</button>
             </form>
+            {{-- 넘어온 session 의 값들을 확인할 수 있다. --}}
             {{ var_dump(request()->session()) }}
+
+            {{-- 입력했었던 값을 가져올 수 있다. --}}
             {{ request()->old('body') }}
             {{ old('body') }}
         </div>
