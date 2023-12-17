@@ -46,5 +46,6 @@ Route::post('/articles', function(Request $request) {
         ],
     ]);
 
+    // 글을 저장한다.
     return 'hello';
 });
