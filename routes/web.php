@@ -107,3 +107,14 @@ Route::post('/articles', function(Request $request) {
     // 글을 저장한다.
     return 'hello';
 });
+
+Route::get('articles', function() {
+    $articles = Article::select('body', 'created_at')
+    ->latest() // ->orderBy('created_at', 'desc')
+    // ->oldest() // ->orderBy('created_at', 'asc')
+    ->get();
+
+    return view('articles.index', [
+        'articles' => $articles,
+    ]);
+});
