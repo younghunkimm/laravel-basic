@@ -2,6 +2,7 @@
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -120,6 +121,15 @@ Route::get('articles', function(Request $request) {
     $articles->appends(['filter' => 'name']); // 페이징에 쿼리스트링을 수동으로 추가해준다.
 
     $totalCount = Article::count();
+
+    /** Carbon 클래스 알아보기 */
+    // $now = Carbon::now();
+    // $past = clone $now;
+    // $past->subHours(3);
+
+    // dd($now->diff($past)->h);
+    // dd($now->diffInMinutes($past));
+    // dd(Carbon::now()->subHours(1)->addMinutes(10));
 
     return view('articles.index', [
         'articles' => $articles,

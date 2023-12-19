@@ -12,7 +12,7 @@
                 <div class="bg-white-500 border rounded my-3 p-3">
                     <p>{{ $loop->index }}</p>
                     <p>{{ $article->body }}</p>
-                    <p>{{ $article->created_at }}</p>
+                    <p>{{ $article->created_at->diffForHumans() }}</p>
                 </div>
 
                 @if ($loop->last) <p>last</p> @endif
