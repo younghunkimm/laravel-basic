@@ -112,10 +112,19 @@ Route::post('/articles', function(Request $request) {
 Route::get('articles', function(Request $request) {
     $perPage = $request->input('per_page', 2);
 
-    $articles = Article::select('body', 'user_id', 'created_at')
+    $articles = Article::with('user')
+    ->select('body', 'user_id', 'created_at')
     ->latest() // ->orderBy('created_at', 'desc')
     // ->oldest() // ->orderBy('created_at', 'asc')
     ->paginate($perPage);
+
+    /** 
+     * 🔥 데이터 조회 횟수 줄이기 (Eager loading)
+     * 관계모델 사용시 n+1 문제 (게시물 작성자의 이름을 표시하기 위해 게시물의 수 만큼 쿼리가 발생) 해결하기
+     * 
+     * with 를 쓰거나 load 를 사용한다
+     */
+    // $articles->load('user');
 
     $articles->withQueryString(); // 페이징에 모든 쿼리스트링들을 자동으로 추가해준다.
     $articles->appends(['filter' => 'name']); // 페이징에 쿼리스트링을 수동으로 추가해준다.
