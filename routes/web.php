@@ -129,8 +129,6 @@ Route::get('articles', function(Request $request) {
     $articles->withQueryString(); // 페이징에 모든 쿼리스트링들을 자동으로 추가해준다.
     $articles->appends(['filter' => 'name']); // 페이징에 쿼리스트링을 수동으로 추가해준다.
 
-    $totalCount = Article::count();
-
     /** Carbon 클래스 알아보기 */
     // $now = Carbon::now();
     // $past = clone $now;
@@ -142,7 +140,6 @@ Route::get('articles', function(Request $request) {
 
     return view('articles.index', [
         'articles' => $articles,
-        'totalCount' => $totalCount,
         'perPage' => $perPage,
     ]);
 });
